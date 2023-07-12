@@ -1,3 +1,5 @@
+![Tests](https://github.com/SamagraX-RCW/identity/actions/workflows/ci.yml/badge.svg)
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
@@ -27,7 +29,7 @@ $ npm run start:prod
 # unit tests
 $ npm run test
 
-# In independent docker containers 
+# In independent docker containers
 $ make test
 
 # e2e tests
