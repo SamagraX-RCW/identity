@@ -1,4 +1,4 @@
-name: Run Docker Compose and Nest.js tests
+name: Tests
 
 on:
   push:
@@ -16,5 +16,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup Services and Run tests
+      - name: Setup Services in Docker and Run tests
         run: make test
