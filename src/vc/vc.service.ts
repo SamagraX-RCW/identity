@@ -13,6 +13,26 @@ export default class VcService {
     private readonly vault: VaultService,
   ) {}
 
+
+  async multiSign(signerDIDs: string[], toSign: string) {
+    try {
+      for (let i = 0; i < signerDIDs.length; i++) {
+        const signedResult = await this.sign(signerDIDs[i], toSign);
+        toSign['proof'] = {
+          proofValue: signedResult.signed,
+          created: new Date().toISOString(),
+          type: process.env.SIGNING_ALGORITHM,
+          verificationMethod: signerDIDs[i],
+          proofPurpose: 'assertionMethod',
+        }
+      }
+
+      return toSign;
+    } catch (err) {
+      throw new InternalServerErrorException(`Error in multi signing the document`);
+    }
+  }
+
   async sign(signerDID: string, toSign: string) {
     let did: Identity;
     try {
