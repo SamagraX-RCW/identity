@@ -18,6 +18,12 @@ export class VcController {
     return this.VcService.sign(body.DID, body.payload);
   }
 
+
+  @Post('/multi-sign')
+  multiSign(@Body() body: any) {
+    return this.VcService.multiSign(body.signerDIDs, body.toSign);
+  }
+
   @ApiOperation({ summary: 'Verify a signed VC' })
   @Post('/verify')
   verify(@Body() body: VerifyJsonDTO) {
